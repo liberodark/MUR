@@ -13,10 +13,10 @@ source=("mur.py"
         "mur.png"
         "mur.desktop"
         "mur.conf")
-sha512sums=('d54d10467391247f23c1ee07df0637c64378443847a7ec7ea9a9d5fe41f2f8d4'
-            '874700067f446dff59f8e4e6c3b14519ca8afdf31742af629343c80002c71376'
-            '0f2f75e7aaf1375b14570067563330f438e2a20158642b76c16a4ff4a8bb3158'
-            'd8fafeb25a8b2368803565ed62ba147aa38adfe57089fe44125f5e07eea3d21b')		
+sha512sums=('eea8960f09dd32f810635be0f2537766b5d7594f67d8abe829fc62509df4c6ccf2f17a2a2dfdfe7775b1c4b3075c90aaf5d15e03441cd49106b628bccc0fbc95'
+            '11e9084df257b7ce16d87dbc5d5bdd9acee16c0811de73336f6137c53ae3c78333b939cfef41ba760e55d37fe427908e7a8812ccd1b8ea558db1dc280b427242'
+            '2ab4fa0a9600a9915fbcd41e6e15186119f135c035e2833e1c01457403236ed6aeadcf93e5df58597459c9ad46f1d91f7d9ef1778385279620e1225338aeb785'
+            '3145999bbf371ee729754ea1ac06472dadd6449644854ac1324f324ca24a4f7bd215cc414d760142cdbb34dfcac474604c5b1a84f44683037cbe2af902860212')		
 package() {
 	install -Dm644 "mur.desktop" "${pkgdir}/usr/share/applications/mur.desktop"
         install -Dm644 "mur.py" "${pkgdir}/usr/bin/mur.py"
