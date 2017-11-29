@@ -1,0 +1,25 @@
+# Maintainer: liberodark
+
+pkgname=frostwire
+pkgver=6.5.8
+pkgrel=245
+pkgdesc="FrostWire is a free and easy Downloader, BitTorrent Client and Media Player"
+arch=('x86_64')
+url="http://www.frostwire.com"
+license=('custom')
+depends=('xdg-utils' 'jre8-openjdk')
+source_x86_64=("https://github.com/frostwire/frostwire/releases/download/frostwire-desktop-6.5.8-build-245/frostwire-6.5.8.all.deb")
+source=($pkgname.desktop
+        $pkgname.png)
+sha512sums=('003c5eeb9aa1b56fc8d3959d619757fe9c1f088881b92b00f249fe4c3e23060db3462475a307bf578ba0f0a342f64498d69f4d7f9f6c3abceec0aaa983b3eee1'
+         'f0172d8d8435ddbc96e3f3e8ce6f09869ade1b9a32ef3930ae2f8b2522af121f6b2d37e9e8eb081561715845d9bb73f027c848a3756126d3ac989a861bfe2a4e')
+sha512sums_x86_64=('ea2a5d272fe52949fae13e9a31a15b12659211026242d513957ed605112c5488ae27135c01922605093712944fc554d9743ac74810fde7b89163218b6fcde594')
+        
+package() {
+  cd $srcdir
+  tar xvf data.tar.xz
+  cp -r usr $pkgdir
+  rm $pkgdir/usr/share/{logo*,*.desktop,*.png}	
+  install -vDm644 $srcdir/$pkgname.desktop $pkgdir/usr/share/applications/$pkgname.desktop
+  install -vDm644 $srcdir/$pkgname.png $pkgdir/usr/share/pixmaps/$pkgname.png
+}
