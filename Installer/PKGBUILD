@@ -7,7 +7,7 @@ pkgdesc="Manjaro User Repository"
 arch=('x86_64')
 license=('GPL3')
 url="https://github.com/liberodark/MUR"
-depends=('tk' 'python-pillow')
+depends=('gksu' 'tk' 'python-pillow')
 install=mur.install
 source=("mur.py"
         "mur.png"
