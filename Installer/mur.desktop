@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Name=MUR Installer
+Type=Application
+Comment=Install MUR
+Terminal=false
+Exec=python /usr/bin/mur.py
+Icon=mur
+StartupNotify=true
+Categories=System;
+GenericName=MUR Installer
+Keywords=mur

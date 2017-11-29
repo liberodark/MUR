@@ -21,14 +21,14 @@ else:
     import tkMessageBox as messagebox
 
 if os.getuid() != 0:
-    os.system ("gksudo python /usr/bin/amar.py")
+    os.system ("gksudo python /usr/bin/mur.py")
     #print("Utiliser le script en tant qu'administrateur, lancer le avec 'gksudo -s python amar.py'")
     sys.exit(1)
 
 pacmanfichier = "/etc/pacman.conf"
 
 try:
-    #On suppose d'abord qu'AMAR est désactivé. On met donc etatamar = 0 au départ.
+    #On suppose d'abord qu'MUR est désactivé. On met donc etatamar = 0 au départ.
     etatamar = 0
     with open(pacmanfichier, 'r') as searchfile:
         for line in searchfile:
@@ -40,7 +40,7 @@ except OSError:
     print("pacman.conf non acessible, donnez le chemin vers votre fichier")
     sys.exit(1)
 
-configamar = "\n#Do not disable AMAR manually if you use the app\nInclude = /etc/pacman.d/amar.conf\n"
+configamar = "\n#Do not disable MUR manually if you use the app\nInclude = /etc/pacman.d/mur.conf\n"
 
 def pressA():
     A.config(state=DISABLED)
@@ -50,7 +50,7 @@ def pressA():
             ecrire.write(configamar)
             ecrire.close()
             os.system("sudo pacman -Syy")
-            INFO.config(text="Actif", fg="green")  # on active le depot AMAR, donc on ecrit sur le fichier.
+            INFO.config(text="Actif", fg="green")  # on active le depot MUR, donc on ecrit sur le fichier.
             etatamar = 1
             ecrire.close()
     except OSError:
@@ -64,8 +64,8 @@ def pressB():
     try:
         with open((pacmanfichier), "r") as f:
             lines = f.readlines()
-            lines.remove("#Do not disable AMAR manually if you use the app\n")
-            lines.remove("Include = /etc/pacman.d/amar.conf\n")
+            lines.remove("#Do not disable MUR manually if you use the app\n")
+            lines.remove("Include = /etc/pacman.d/mur.conf\n")
         with open((pacmanfichier), "w") as new_f:
             for line in lines:
                 new_f.write(line)
@@ -80,13 +80,13 @@ def pressB():
 
 
 win = Tk()
-win.title("TNV A.M.A.R - Configuration")
+win.title("MUR - Manjaro User Repository")
 win.geometry("620x280")
-tux = PhotoImage(file="/usr/share/icons/amar.png")  # lien vers l'icone de la fenetre
+tux = PhotoImage(file="/usr/share/icons/mur.png")  # lien vers l'icone de la fenetre
 win.tk.call('wm', 'iconphoto', win._w, tux)  # application de la fenetre
 
-TEXTE = Label(win, text='TNV AMAR', fg="blue")
-TEXTE2 = Label(win, text="Le dépôt AMAR (Arch/Manjaro Alternate Repository) est un dépôt tiers donnant\n"
+TEXTE = Label(win, text='MUR', fg="blue")
+TEXTE2 = Label(win, text="Le dépôt MUR (Manjaro User Repository) est un dépôt tiers donnant\n"
                            "accès à des logiciels supplémentaires non-accessibles via les dépôts officiels."
                            "\n\nCe dépôt a été créé afin de pouvoir donner accès simplement à des logiciels dont"
                            " l'installation\nvia AUR est problématique ou des logiciels qui ne concernent que"
@@ -115,8 +115,8 @@ else:
     B.config(state=DISABLED)
 
 if etatamar == 0:
-    INFO.config(text="Inactif", fg="red")  # on active le depot AMAR, donc on ecrit sur le fichier.
+    INFO.config(text="Inactif", fg="red")  # on active le depot MUR, donc on ecrit sur le fichier.
 else:
-    INFO.config(text="Actif", fg="green")  # on active le depot AMAR, donc on ecrit sur le fichier.
+    INFO.config(text="Actif", fg="green")  # on active le depot MUR, donc on ecrit sur le fichier.
     
 win.mainloop()

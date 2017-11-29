@@ -1,0 +1,26 @@
+# Maintainer: liberodark
+
+pkgname=mur-installer
+pkgver=1
+pkgrel=1
+pkgdesc="Manjaro User Repository"
+arch=('x86_64')
+license=('GPL3')
+url="https://github.com/liberodark/MUR"
+depends=('gksu' 'tk' 'python-pillow')
+install=mur.install
+source=("mur.py"
+        "mur.png"
+        "mur.desktop"
+        "mur.conf")
+sha512sums=('d54d10467391247f23c1ee07df0637c64378443847a7ec7ea9a9d5fe41f2f8d4'
+            '874700067f446dff59f8e4e6c3b14519ca8afdf31742af629343c80002c71376'
+            '0f2f75e7aaf1375b14570067563330f438e2a20158642b76c16a4ff4a8bb3158'
+            'd8fafeb25a8b2368803565ed62ba147aa38adfe57089fe44125f5e07eea3d21b')		
+package() {
+	install -Dm644 "mur.desktop" "${pkgdir}/usr/share/applications/mur.desktop"
+        install -Dm644 "mur.py" "${pkgdir}/usr/bin/mur.py"
+        install -Dm644 "mur.png" "${pkgdir}/usr/share/icons/mur.png"
+        install -Dm644 "mur.conf" "${pkgdir}/etc/pacman.d/mur.conf"
+} 
+
