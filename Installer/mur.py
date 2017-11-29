@@ -1,12 +1,11 @@
 #!usr/bin/env/ python
 # coding: utf-8
 """
-Projet AMAR
-Remerciements : Baba, Fredo, Rhylx, Francky, hRF, Pepito...
-Date : 14 Oct 2K17,
-       1.0.1 : 19 Nov 2017
-version :  1.0.1
-gksudo -s python amar.py
+MUR - Manjaro User Repository
+Thanks : Baba, Fredo, Rhylx, Francky, hRF, Pepito, for AMAR Project.
+Date : 29 Nov 2K17,
+version :  1.0
+gksudo -s python mur.py
 """
 
 import os
@@ -22,36 +21,36 @@ else:
 
 if os.getuid() != 0:
     os.system ("gksudo python /usr/bin/mur.py")
-    #print("Utiliser le script en tant qu'administrateur, lancer le avec 'gksudo -s python amar.py'")
+    #print("Utiliser le script en tant qu'administrateur, lancer le avec 'gksudo -s python mur.py'")
     sys.exit(1)
 
 pacmanfichier = "/etc/pacman.conf"
 
 try:
-    #On suppose d'abord qu'MUR est désactivé. On met donc etatamar = 0 au départ.
-    etatamar = 0
+    #On suppose d'abord que MUR est désactivé. On met donc etatmur = 0 au départ.
+    etatmur = 0
     with open(pacmanfichier, 'r') as searchfile:
         for line in searchfile:
-            #Si la chaîne '[AMAR]' est écrit quelque part dans pacman.conf, alors le dépôt est activé et on met etatamar = 1.
-            if 'amar.conf' in line:
-                etatamar = 1
+            #Si la chaîne '[MUR]' est écrit quelque part dans pacman.conf, alors le dépôt est activé et on met etatmur = 1.
+            if 'mur.conf' in line:
+                etatmur = 1
     searchfile.close()
 except OSError:
     print("pacman.conf non acessible, donnez le chemin vers votre fichier")
     sys.exit(1)
 
-configamar = "\n#Do not disable MUR manually if you use the app\nInclude = /etc/pacman.d/mur.conf\n"
+configmur = "\n#Do not disable MUR manually if you use the app\nInclude = /etc/pacman.d/mur.conf\n"
 
 def pressA():
     A.config(state=DISABLED)
     B.config(state=ACTIVE)
     try:
         with open(pacmanfichier, "a") as ecrire:
-            ecrire.write(configamar)
+            ecrire.write(configmur)
             ecrire.close()
             os.system("sudo pacman -Syy")
             INFO.config(text="Actif", fg="green")  # on active le depot MUR, donc on ecrit sur le fichier.
-            etatamar = 1
+            etatmur = 1
             ecrire.close()
     except OSError:
         messagebox.showerror("Erreur", "Ficher pacman.conf non accessible en écrture\nVérifier vos droit et relancer"
@@ -70,8 +69,8 @@ def pressB():
             for line in lines:
                 new_f.write(line)
         os.system ("sudo pacman -Syy")
-        INFO.config(text="Inactif", fg="red")  # on active le depot AMAR, donc on ecrit sur le fichier.
-        etatamar = 0
+        INFO.config(text="Inactif", fg="red")  # on active le depot MUR, donc on ecrit sur le fichier.
+        etatmur = 0
         f.close()
         new_f.close()
     except OSError:
@@ -103,7 +102,7 @@ MESSAGE = Label(win, text='ETAT DU DEPÔT', fg="blue")
 INFO.pack(side=BOTTOM)  # on ferme les boutons en décidant de leur amplacement
 MESSAGE.pack(side=BOTTOM)
 
-if etatamar:
+if etatmur:
     A.pack()
     A.config(state=DISABLED)
     B.pack()
@@ -114,7 +113,7 @@ else:
     B.pack()
     B.config(state=DISABLED)
 
-if etatamar == 0:
+if etatmur == 0:
     INFO.config(text="Inactif", fg="red")  # on active le depot MUR, donc on ecrit sur le fichier.
 else:
     INFO.config(text="Actif", fg="green")  # on active le depot MUR, donc on ecrit sur le fichier.
