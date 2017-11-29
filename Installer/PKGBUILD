@@ -7,13 +7,13 @@ pkgdesc="Manjaro User Repository"
 arch=('x86_64')
 license=('GPL3')
 url="https://github.com/liberodark/MUR"
-depends=('gksu' 'tk' 'python-pillow')
+depends=('tk' 'python-pillow')
 install=mur.install
 source=("mur.py"
         "mur.png"
         "mur.desktop"
         "mur.conf")
-sha512sums=('eea8960f09dd32f810635be0f2537766b5d7594f67d8abe829fc62509df4c6ccf2f17a2a2dfdfe7775b1c4b3075c90aaf5d15e03441cd49106b628bccc0fbc95'
+sha512sums=('e7522ca890914c967e3fa36a1b78f3cc3585fdbd9264853138fc61d5736998e4b63feb2815c8b2a3d98656d84f7c02925fe8c442712417b57c8e0ecccf652a2e'
             '11e9084df257b7ce16d87dbc5d5bdd9acee16c0811de73336f6137c53ae3c78333b939cfef41ba760e55d37fe427908e7a8812ccd1b8ea558db1dc280b427242'
             '2ab4fa0a9600a9915fbcd41e6e15186119f135c035e2833e1c01457403236ed6aeadcf93e5df58597459c9ad46f1d91f7d9ef1778385279620e1225338aeb785'
             'ce828e419d12f296e6f15f9913848bd8f20490e08ef55073d1a8e79fc922eddb770834ebd62ace899575789ba5fea559c094174772d61f4fa84cd09338c72cb2')		
